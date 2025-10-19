@@ -1,66 +1,45 @@
-# PhishGuard — AI Phishing Detector (Hackathon-ready)
+Here's how to run it:
 
-A complete, minimal project that trains a phishing detector and serves it via a Flask API,
-with a clean HTML/CSS/JS front-end for demo.
+1. Gỡ Python 3.13 (nếu muốn)
+Settings → Apps → tìm Python → Uninstall
+(Không bắt buộc nhưng khuyên dùng Python 3.11 để tránh lỗi dependency.)
 
-## ✨ Features
-- Trainable model (TF‑IDF + Logistic Regression, class_weight balanced)
-- Flask API (`/predict`, `/health`) with CORS enabled
-- Front-end (vanilla HTML/CSS/JS) that calls the API and shows results
-- Sample dataset included (`sample_data.csv`)
-- Single-command packaging (zip) ready for submission
+2. Cài Python 3.11
+Tải installer Python 3.11 (từ python.org). Khi cài: tick “Add Python to PATH”.
 
-## 📦 Requirements (local)
-- Python 3.10+
-- `pip install -r requirements.txt`
+3. Mở PowerShell trong thư mục project rồi tạo môi trường ảo:
 
-## 🚀 Quick Start
-1) **Train the model**
-```bash
-cd phishguard
-pip install -r requirements.txt
-python train.py   # produces phishguard_pipeline.joblib
-```
+python -m venv .venv
 
-2) **Run the API**
-```bash
+4. Kích hoạt venv:
+
+.\.venv\Scripts\Activate
+(bạn sẽ thấy prompt chuyển sang (.venv))
+
+5. Cập nhật pip/setuptools/wheel:
+
+python -m pip install --upgrade pip setuptools wheel
+
+6. Cài tất cả dependency bằng file:
+
+python -m pip install -r requirements.txt
+(Trên Python 3.11, lệnh này sẽ cài numpy, scikit-learn, pandas, flask, v.v. bình thường.)
+
+7. Huấn luyện model (tạo file phishguard_pipeline.joblib):
+
+python train.py
+
+Bạn sẽ thấy output accuracy và file phishguard_pipeline.joblib được lưu.
+
+8. Chạy server Flask:
+
 python app.py
-# API at http://127.0.0.1:5000
-```
+Mục tiêu: bạn nên thấy * Running on http://127.0.0.1:5000
 
-3) **Open the Front-end**
-Open `frontend/index.html` in your browser (double-click).
-- The front-end calls `http://127.0.0.1:5000/predict` by default.
-- If you deploy the API elsewhere, change `API_BASE` in `frontend/script.js`.
+9. Mở giao diện: mở frontend/index.html trong trình duyệt (double-click). Dán email/văn bản, bấm Check Now.
 
-## 🧪 Test Payloads
-Try pasting texts like:
-- "Urgent: Your account will be locked. Verify password at http://short.link/reset"
-- "Team meeting at 2pm — see you!"
+10. (Test API nhanh bằng PowerShell)
 
-## 🛠️ Customize / Improve
-- Replace `sample_data.csv` with your dataset (columns: `text,label` where label ∈ {phishing, legit})
-- Tune `TfidfVectorizer` and `LogisticRegression`
-- Add URL/domain features (length, suspicious TLDs, presence of IP, `@`, etc.)
-- Switch to a transformer model (BERT) when you have more data
-- Add explainability (e.g., highlight top TF‑IDF terms)
-
-## 🌐 Deployment Hints
-- Use `gunicorn` to serve Flask in production
-- Host API on Render/Fly.io/HF Spaces; host front-end on Vercel/Netlify/GitHub Pages
-- Set `API_BASE` in `frontend/script.js` to your deployed API URL
-
-## 📁 Project Structure
-```
-phishguard/
-  ├─ app.py                 # Flask API
-  ├─ train.py               # Training script
-  ├─ requirements.txt
-  ├─ sample_data.csv
-  └─ frontend/
-      ├─ index.html
-      ├─ style.css
-      └─ script.js
-```
-
-Good luck and have fun at your hackathon! 🏆
+Invoke-RestMethod -Uri http://127.0.0.1:5000/health
+# hoặc
+Invoke-RestMethod -Uri http://127.0.0.1:5000/predict -Method Post -Body (ConvertTo-Json @{text="Test messag
