@@ -10,8 +10,15 @@
 
 ## 🚀 Quick Start
 
-Follow these steps to run **PhishGuard AI** on your local machine.
+Follow these steps to run **PhishGuard AI** on your local machine:
+
 ### 1. Gỡ Python 3.13 (nếu muốn)
+To check python version, run this:
+
+```bash
+python --version
+```
+
 Settings → Apps → tìm Python → Uninstall
 (Không bắt buộc nhưng khuyên dùng Python 3.11 để tránh lỗi dependency.)
 
@@ -51,7 +58,8 @@ python app.py
 ```
 Mục tiêu: bạn nên thấy * Running on http://127.0.0.1:5000
 
-### 9. Mở giao diện: mở __frontend/index.html__ trong trình duyệt (double-click). Dán email/văn bản, bấm Check Now.
+### 9. Mở giao diện: 
+Mở __frontend/index.html__ trong trình duyệt (double-click). Dán email/văn bản, bấm Check Now.
 
 ### 10. (Test API nhanh bằng PowerShell)
 ```bash
