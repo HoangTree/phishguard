@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhishGuard — AI Phishing Detector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛡️ PhishGuard</h1>
+      <p class="subtitle">Detect phishing emails/messages with AI</p>
+    </header>
+
+    <main>
+      <textarea id="emailText" placeholder="Paste email or message here..."></textarea>
+      <button id="checkBtn">Check Now</button>
+
+      <div id="result" class="card hidden">
+        <h2>Result</h2>
+        <div id="badge"></div>
+        <p id="confidence"></p>
+      </div>
+    </main>
+
+    <footer>
+      <small>Made for Hackathon — AI x Cyber Security</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
